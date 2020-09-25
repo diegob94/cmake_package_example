@@ -34,3 +34,14 @@ install(FILES
 )
 install(DIRECTORY ${PROJECT_SOURCE_DIR}/include/ DESTINATION include)
 
+if(NOT TARGET uninstall)
+    configure_file(
+        "${PROJECT_SOURCE_DIR}/cmake/uninstall.cmake.in"
+        "${PROJECT_BINARY_DIR}/uninstall.cmake"
+        IMMEDIATE @ONLY
+    )
+    add_custom_target(uninstall
+        COMMAND ${CMAKE_COMMAND} -P ${PROJECT_BINARY_DIR}/uninstall.cmake
+    )
+endif()
+
